@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днем Рождения! ❤️ Наша особенная история</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfbf7;
+            color: #2d2a26;
+            overflow-x: hidden;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .font-handwriting {
+            font-family: 'Caveat', cursive;
+        }
+
+        /* 3D Flip Card Animation Styles */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.25rem;
+            overflow: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%);
+            border: 2px solid #fecdd3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.25rem;
+            text-align: center;
+            box-shadow: 0 10px 25px -5px rgba(244, 63, 94, 0.1);
+        }
+
+        /* Pinterest Masonry Layout Helpers */
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.25rem;
+        }
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Floating Hearts Animations */
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.8) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) scale(1.2) rotate(15deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1) rotate(-15deg);
+            }
+        }
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatUp 1.4s ease-out forwards;
+        }
+
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        .glass-widget {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdfbf7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #fda4af;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fb7185;
+        }
+
+        .envelope-wrapper {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .envelope-wrapper:hover {
+            transform: translateY(-5px) scale(1.03);
+        }
+    </style>
+</head>
+<body class="relative selection:bg-rose-200 selection:text-rose-900">
+
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-rose-100 z-50">
+        <div id="scrollProgress" class="h-full bg-gradient-to-r from-rose-400 via-pink-500 to-amber-400 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- Background Subtle Glow Orbs -->
+    <div class="fixed top-20 left-10 w-72 h-72 bg-rose-200/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed top-1/3 right-10 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed bottom-20 left-1/4 w-80 h-80 bg-pink-200/30 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- HERO SECTION: BIRTHDAY BANNER -->
+    <header class="min-h-screen flex flex-col justify-center items-center relative px-4 py-20 text-center">
+        <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-rose-50 border border-rose-200 text-rose-600 text-sm font-semibold mb-6 shadow-sm animate-pulse">
+            <span>🎂</span> Твой особенный год <span>✨</span>
+        </div>
+        
+        <h1 class="font-serif-title text-4xl sm:text-6xl md:text-7xl font-bold text-stone-800 tracking-tight leading-tight max-w-4xl mb-6">
+             С Днем Рождения, Любимая! <br class="hidden sm:inline">
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-stone-600 max-w-2xl mb-10 font-light leading-relaxed">
+            От первых незабываемых дней весной до больших свершений, путешествий и смелых шагов навстречу новому. Этот сайт — твой личный альбом памяти и признание в том, насколько ты прекрасная. (Не забудь включить радио внизу справа, там несколько песен).
+        </p>
+
+        <!-- Birthday Highlight Box -->
+        <div class="glass-panel p-6 sm:p-8 rounded-3xl shadow-xl border border-rose-100/80 max-w-md w-full mb-12 relative overflow-hidden">
+            <div class="absolute -right-4 -top-4 w-20 h-20 bg-amber-200/50 rounded-full blur-xl"></div>
+            <p class="text-xs uppercase tracking-widest text-stone-400 font-semibold mb-2">Главный посыл этого дня</p>
+            <p class="font-serif-title text-2xl font-bold text-rose-900 mb-2">Сиять, верить в себя и смело идти вперёд! ✨</p>
+            <p class="text-xs text-stone-500 leading-relaxed">Сириус, Бал, Абхазия, Ажек, Выпускной, Большое путешествие и Переезд — ты создаешь свою удивительную историю!</p>
+        </div>
+
+        <div class="animate-bounce mt-2 text-stone-400 flex flex-col items-center gap-2">
+            <span class="text-xs uppercase tracking-widest">Листай вниз, чтобы вспомнить все главы</span>
+            <svg class="w-5 h-5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINERS -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-32 pb-40">
+
+        <!-- CHAPTER 1: СИРИУС -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🚀</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 01</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Период "Сириус"</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Время первых больших совместных открытий, длинных вечеров и искренних разговоров. Зарождение нашей истории.
+            </p>
+
+            <!-- Main Photo -->
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front bg-stone-200">
+                        <img src="images/sirius_main.jpg" onerror="this.src='https://placehold.co/1000x600/fecdd3/881337?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Сириус Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-6 text-white">
+                            <span class="bg-rose-500 text-white text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wider mb-2 inline-block">Начало пути</span>
+                            <p class="text-lg font-medium">Нажми, чтобы прочитать главное пожелание ➔</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-3">⭐</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Ты — вдохновение</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed mb-4">
+                            Ты поразила меня. Помни: ты прекрасна сама по себе!
+                        </p>
+                        <span class="text-xs font-semibold text-rose-500">Нажми, чтобы перевернуть обратно</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pinterest / Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid">
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/sirius_1.jpg" onerror="this.src='https://placehold.co/500x700/ffe4e6/9f1239?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81+1'" alt="Сириус 1" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Твоя улыбка освещает любой день 😊</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/sirius_2.jpg" onerror="this.src='https://placehold.co/500x500/fecdd3/9f1239?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81+2'" alt="Сириус 2" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm font-medium text-stone-700">Будь всегда настоящей и верь в свою уникальность!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/sirius_3.jpg" onerror="this.src='https://placehold.co/500x600/fda4af/9f1239?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81+3'" alt="Сириус 3" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Чудесные пальмы</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/sirius_4.jpg" onerror="this.src='https://placehold.co/500x750/fb7185/ffffff?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81+4'" alt="Сириус 4" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Наши прогулки</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/sirius_5.jpg" onerror="this.src='https://placehold.co/500x550/f43f5e/ffffff?text=%D0%A1%D0%B8%D1%80%D0%B8%D1%83%D1%81+5'" alt="Сириус 5" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Дендрарий</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 2: БАЛ -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">💃</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 02</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Наш Сказочный Бал</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Красота, грация и завораживающая атмосфера. Ты была главной королевой вечера!
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/bal_main.jpg" onerror="this.src='https://placehold.co/1000x600/fb7185/ffffff?text=%D0%91%D0%B0%D0%BB:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Бал Главное" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Королевский момент 👑 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">✨</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Грация и самоценность</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты умеешь держать себя с высоким достоинством. Никогда не забывай, насколько ты прекрасна и уникальна!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid mb-10">
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/bal_1.jpg" onerror="this.src='https://placehold.co/500x550/ffe4e6/881337?text=%D0%91%D0%B0%D0%BB+1'" alt="Бал 1" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Твои незабываемые эмоции! 🎶</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/bal_2.jpg" onerror="this.src='https://placehold.co/500x700/fecdd3/881337?text=%D0%91%D0%B0%D0%BB+2'" alt="Бал 2" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Ты притягиваешь взгляды своей искренней энергией.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/bal_3.jpg" onerror="this.src='https://placehold.co/500x500/fda4af/881337?text=%D0%91%D0%B0%D0%BB+3'" alt="Бал 3" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Настоящая сказка 💖</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/bal_4.jpg" onerror="this.src='https://placehold.co/500x600/e11d48/ffffff?text=%D0%91%D0%B0%D0%BB+4'" alt="Бал 4" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Осанка, стиль и невероятный шарм 🌹</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/bal_5.jpg" onerror="this.src='https://placehold.co/500x750/be123c/ffffff?text=%D0%91%D0%B0%D0%BB+5'" alt="Бал 5" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Кадр, застывший во времени ✨</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMBEDDED VIDEO PLAYER FOR BALL -->
+            <!-- Видео с бала -->
+            <div class="mt-8 p-6 bg-white/70 rounded-3xl shadow-inner">
+                <h4 class="text-xl font-medium text-gray-800 mb-4">✨ Видео с бала</h4>
+            <div class="relative aspect-[9/16] max-w-md mx-auto">
+            <video id="balVideo" class="absolute inset-0 w-full h-full object-cover rounded-2xl shadow-lg" controls playsinline>
+            <source src="another/bal.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+            </video>
+             </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 3: АБХАЗИЯ -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🏔️</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 03</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Однодневный побег в Абхазию</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Горы, морской бриз, спонтанность и ощущение полной свободы. Один день, подаривший море эмоций (за 200 рублей)!
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/abkhazia_main.jpg" onerror="this.src='https://placehold.co/1000x600/f43f5e/ffffff?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Абхазия Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Свобода и легкие на подъем 🌿 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">🌊</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Жизнь в моменте</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты умеешь радоваться простым вещам и наполнять яркими красками даже самый обычный день!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid mb-10">
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/abkhazia_1.jpg" onerror="this.src='https://placehold.co/500x700/ffe4e6/881337?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F+1'" alt="Абхазия 1" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Удивительные водопады</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/abkhazia_2.jpg" onerror="this.src='https://placehold.co/500x550/fecdd3/881337?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F+2'" alt="Абхазия 2" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Будь независимой и следуй за своими мечтами!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/abkhazia_3.jpg" onerror="this.src='https://placehold.co/500x600/fda4af/881337?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F+3'" alt="Абхазия 3" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Твоя обворажительная улыбка</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/abkhazia_4.jpg" onerror="this.src='https://placehold.co/500x500/e11d48/ffffff?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F+4'" alt="Абхазия 4" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Горные вершины и чистое счастье 🏔️</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/abkhazia_5.jpg" onerror="this.src='https://placehold.co/500x750/9f1239/ffffff?text=%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D1%8F+5'" alt="Абхазия 5" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EMBEDDED VIDEO PLAYER FOR ABKHAZIA -->
+            <div class="glass-panel p-4 sm:p-6 rounded-3xl shadow-lg border border-rose-100">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="text-rose-500 font-bold">📹</span>
+                    <h4 class="font-serif-title text-lg font-bold text-stone-800">2-минутное видео нашей поездки в Абхазию</h4>
+                </div>
+                <div class="relative aspect-video rounded-2xl overflow-hidden bg-black shadow-inner">
+                    <video controls class="w-full h-full object-cover" poster="https://placehold.co/800x450/1c1917/ffffff?text=%D0%9D%D0%B0%D0%B6%D0%BC%D0%B8+Play+%D0%B4%D0%BB%D1%8F+%D0%BF%D1%80%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B0+%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE+%D0%90%D0%B1%D1%85%D0%B0%D0%B7%D0%B8%D0%B8">
+                        <source src="another/abkhazia.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 4: АЖЕК -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🥾</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 04</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Поход в Ажек</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Тропы, водопады, единение с природой и проверка на выносливость (и дружбы на прочность). Настоящий характер раскрывается в походах!
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/azhek_main.jpg" onerror="this.src='https://placehold.co/1000x600/e11d48/ffffff?text=%D0%9F%D0%BE%D1%85%D0%BE%D0%B4+%D0%B2+%D0%90%D0%B6%D0%B5%D0%BA:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Ажек Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Лесной уют и сила духа 🌲 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">🌲</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Внутренняя опора</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты доказала, что справляешься с любыми подёмами и трудностями. Верь в свой внутренний стержень!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid">
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/azhek_1.jpg" onerror="this.src='https://placehold.co/500x600/ffe4e6/881337?text=%D0%90%D0%B6%D0%B5%D0%BA+1'" alt="Ажек 1" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Наташа и Наташа</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/azhek_2.jpg" onerror="this.src='https://placehold.co/500x700/fecdd3/881337?text=%D0%90%D0%B6%D0%B5%D0%BA+2'" alt="Ажек 2" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Преодолевая любой путь с гордой улыбкой.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/azhek_3.jpg" onerror="this.src='https://placehold.co/500x550/fda4af/881337?text=%D0%90%D0%B6%D0%B5%D0%BA+3'" alt="Ажек 3" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Магия кавказского леса 🌿</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/azhek_4.jpg" onerror="this.src='https://placehold.co/500x500/e11d48/ffffff?text=%D0%90%D0%B6%D0%B5%D0%BA+4'" alt="Ажек 4" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Шум прохладного водопада 💦</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/azhek_5.jpg" onerror="this.src='https://placehold.co/500x750/be123c/ffffff?text=%D0%90%D0%B6%D0%B5%D0%BA+5'" alt="Ажек 5" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Тепло и забота в пути 💚</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 5: ЗАЩИТА ДИПЛОМА И ВЫПУСКНОЙ -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🎓</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 05</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Защита диплома и Выпускной</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Важнейший этап в жизни, признание твоего таланта, ума и упорства. Победа, которой стоит гордиться!
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/grad_main.jpg" onerror="this.src='https://placehold.co/1000x600/be123c/ffffff?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Выпускной Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Триумф и гордость! 🎉 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">🎓</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Ум и Устремленность</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты прошла этот путь блестяще. Никогда не сомневайся в своих знаниях и высоком профессионализме!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid">
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/grad_1.jpg" onerror="this.src='https://placehold.co/500x600/ffe4e6/881337?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9+1'" alt="Выпускной 1" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Тот самый момент защиты! 📜</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/grad_2.jpg" onerror="this.src='https://placehold.co/500x700/fecdd3/881337?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9+2'" alt="Выпускной 2" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Бесконечная радость от достигнутой цели!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/grad_3.jpg" onerror="this.src='https://placehold.co/500x550/fda4af/881337?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9+3'" alt="Выпускной 3" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Выпускной танец ✨</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/grad_4.jpg" onerror="this.src='https://placehold.co/500x500/e11d48/ffffff?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9+4'" alt="Выпускной 4" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium">Новые горизонты открыты перед тобой 🌟</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/grad_5.jpg" onerror="this.src='https://placehold.co/500x750/be123c/ffffff?text=%D0%92%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9+5'" alt="Выпускной 5" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800">Праздник ума и красоты 🎉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 6: БОЛЬШОЕ ПУТЕШЕСТВИЕ -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🚘</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 06</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Большое Путешествие</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Насыщенный маршрут: Казань, Йошкар-Ола, Родная Удмуртия, Липецк и возвращение в Москву, чтобы начать новый путь. Тысячи километров теплых воспоминаний!
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/trip_main.jpg" onerror="this.src='https://placehold.co/1000x600/f43f5e/ffffff?text=%D0%9F%D1%83%D1%82%D0%B5%D1%88%D0%B5%D1%81%D1%82%D0%B2%D0%B8%D0%B5:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Путешествие Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Дороги, города и родные края 🏡 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">🌍</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Открытость миру</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты умеешь сохранять связь со своими корнями и с легкостью исследовать новые места. Пусть жизнь будет полна ярких открытий!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Masonry Gallery (5 Photos) -->
+            <div class="masonry-grid">
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/trip_1.jpg" onerror="this.src='https://placehold.co/500x700/ffe4e6/881337?text=%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C'" alt="Казань" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-64">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/trip_2.jpg" onerror="this.src='https://placehold.co/500x550/fecdd3/881337?text=%D0%99%D0%BE%D1%88%D0%BA%D0%B0%D1%80-%D0%9E%D0%BB%D0%B0'" alt="Йошкар-Ола" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-72">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/trip_3.jpg" onerror="this.src='https://placehold.co/500x600/fda4af/881337?text=%D0%A3%D0%B4%D0%BC%D1%83%D1%80%D1%82%D0%B8%D1%8F'" alt="Удмуртия" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-60">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/trip_4.jpg" onerror="this.src='https://placehold.co/500x500/e11d48/ffffff?text=%D0%9B%D0%B8%D0%BF%D0%B5%D1%86%D0%BA'" alt="Липецк" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="text-sm text-stone-700 font-medium"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masonry-item perspective-1000 h-80">
+                    <div class="flip-card-inner shadow-md" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-front">
+                            <img src="images/trip_5.jpg" onerror="this.src='https://placehold.co/500x750/9f1239/ffffff?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0'" alt="Москва" class="w-full h-full object-cover rounded-3xl">
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="font-handwriting text-2xl text-rose-800"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 7: ПЕРЕЕЗД В НИЖНИЙ НОВГОРОД -->
+        <section class="relative">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="text-3xl sm:text-4xl">🏙️</span>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-rose-500">Глава 07</span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-stone-800">Переезд в Нижний Новгород</h2>
+                </div>
+            </div>
+
+            <p class="text-stone-600 mb-8 max-w-2xl text-base sm:text-lg leading-relaxed">
+                Смелый шаг, начало новой главы, закаты над Волгой и большие перспективы.
+            </p>
+
+            <div class="w-full h-80 sm:h-96 perspective-1000 mb-8">
+                <div class="flip-card-inner rounded-3xl shadow-lg" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-front">
+                        <img src="images/nn_main.jpg" onerror="this.src='https://placehold.co/1000x600/e11d48/ffffff?text=%D0%9D%D0%B8%D0%B6%D0%BD%D0%B8%D0%B9+%D0%9D%D0%BE%D0%B2%D0%B3%D0%BE%D1%80%D0%BE%D0%B4:+%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B5+%D1%84%D0%BE%D1%82%D0%BE'" alt="Нижний Новгород Главная" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 via-transparent p-6 text-white">
+                            <p class="text-lg font-medium">Столица закатов и новых побед 🌅 (Нажми)</p>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <span class="text-3xl mb-2">💫</span>
+                        <h3 class="font-serif-title text-xl font-bold text-rose-900 mb-2">Смелость менять жизнь</h3>
+                        <p class="text-stone-700 text-sm leading-relaxed">
+                            Ты боишься неопределенности и перемен, но продолжаешь храбро идти навстречу новому. Я верю, что в Нижнем у тебя все получится. Впрочем, не только там.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            
+        </section>
+
+        <!-- FINAL BIRTHDAY SEALED LETTER SECTION -->
+        <section class="text-center pt-10">
+            <div class="inline-block p-1 rounded-full bg-gradient-to-r from-rose-400 to-amber-400 mb-6">
+                <div class="bg-white px-5 py-2 rounded-full text-xs font-bold text-rose-600 uppercase tracking-widest shadow-sm">
+                    Твоё праздничное послание
+                </div>
+            </div>
+
+            <h2 class="font-serif-title text-3xl sm:text-5xl font-bold text-stone-800 mb-6">Запечатанный конверт</h2>
+            <p class="text-stone-600 max-w-lg mx-auto mb-10 text-base leading-relaxed">
+                Самые главные и важные слова для тебя в этот День Рождения. Нажми на конверт, чтобы открылось письмо.
+            </p>
+
+            <div class="envelope-wrapper inline-block cursor-pointer" onclick="openLetterModal()">
+                <div class="w-64 h-44 sm:w-80 sm:h-52 bg-gradient-to-br from-rose-100 to-pink-200 rounded-3xl border-2 border-rose-300 shadow-2xl flex flex-col justify-center items-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-rose-500/5 group-hover:bg-rose-500/10 transition-colors"></div>
+                    <span class="text-5xl mb-3 transform group-hover:scale-110 transition-transform">✉️</span>
+                    <span class="font-serif-title font-bold text-rose-900 text-lg">Открыть письмо</span>
+                    <span class="text-xs text-rose-500 mt-1 font-medium">Только для тебя ❤️</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MINI-RADIO PLAYER WIDGET -->
+    <div class="fixed bottom-4 right-4 z-40 max-w-xs sm:max-w-sm w-full px-2">
+        <div class="glass-widget p-4 rounded-2xl shadow-2xl flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span id="radioIcon" class="animate-pulse text-rose-500 text-lg">📻</span>
+                    <div class="overflow-hidden">
+                        <p class="text-xs text-stone-400 uppercase font-semibold">Мини-Радио Треков</p>
+                        <p id="trackTitle" class="text-sm font-bold text-stone-800 truncate">1. Молитва о светлом будущем</p>
+                    </div>
+                </div>
+                <button onclick="togglePlay()" id="playBtn" class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-md hover:bg-rose-600 transition-colors flex-shrink-0">
+                    ▶
+                </button>
+            </div>
+
+            <!-- Audio Progress Bar -->
+            <div class="w-full bg-stone-200 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
+                <div id="audioProgress" class="bg-rose-500 h-full w-0 transition-all duration-200"></div>
+            </div>
+
+            <!-- Radio Controls -->
+            <div class="flex items-center justify-between text-xs text-stone-500">
+                <button onclick="prevTrack()" class="hover:text-rose-600 font-medium">⏮ Пред.</button>
+                <span id="trackTime" class="font-mono text-[10px]">00:00 / 00:00</span>
+                <button onclick="nextTrack()" class="hover:text-rose-600 font-medium">След. ⏭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Native Audio Tag -->
+    <audio id="bgAudio" preload="auto">
+        <source id="audioSource" src="another/track1.mp3" type="audio/mp3">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <!-- BIRTHDAY LETTER MODAL POPUP -->
+    <div id="letterModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-10 shadow-2xl border border-rose-100 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeLetterModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center">✕</button>
+            
+            <div class="text-center mb-6">
+                <span class="text-4xl">💌</span>
+                <h3 class="font-serif-title text-2xl sm:text-3xl font-bold text-rose-900 mt-2">С Днем Рождения!</h3>
+            </div>
+
+            <div class="space-y-4 text-stone-700 text-sm sm:text-base leading-relaxed font-light">
+                <p>
+                    Этот год был невероятно насыщенным: Сириус, сказочный Бал, горы Абхазии, поход в Ажек, защита диплома, путешествие по всей стране и смелый переезд в Нижний Новгород. Но были и трудные моменты, в которые ты могла сомневаться в себе, своих решениях, в своем будущем. Однако, ты прошла этот путь и продолжаешь проходить настолько достойно, насколько можешь, и это заслуживает уважения.<div class=""></div>
+                </p>
+                <p class="font-medium text-rose-900 bg-rose-50 p-4 rounded-2xl border border-rose-100">
+                    Я хочу пожелать тебе всегда быть уверенной в себе, никогда не бояться искать себя, смело отстаивать свои границы и бесконечно любить себя!
+                </p>
+                <p>
+                    Открывай новые грани своей личности, реализуй самые смелые мечты и всегда помни: рядом есть люди, которые верят в тебя и готовы поддержать в любых начинаниях.
+                </p>
+                <p class="text-right font-handwriting text-2xl text-rose-600 pt-4">
+                    С любовью и верой в тебя! ❤️
+                </p>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button onclick="closeLetterModal()" class="px-8 py-3 bg-rose-500 hover:bg-rose-600 text-white rounded-full font-medium shadow-md transition-all">
+                    Обнять и закрыть ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Scroll Progress Bar */
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const scrollBar = document.getElementById('scrollProgress');
+            if (scrollBar) scrollBar.style.width = scrolled + '%';
+        });
+
+        /* Flying Hearts Effect on Screen Click */
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#letterModal') || e.target.closest('.glass-widget') || e.target.closest('button')) return;
+
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = ['❤️', '💖', '✨', '🌸', '💕', '🎂'][Math.floor(Math.random() * 6)];
+            heart.style.left = (e.clientX - 12) + 'px';
+            heart.style.top = (e.clientY - 12) + 'px';
+            heart.style.fontSize = (Math.random() * 12 + 18) + 'px';
+
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1400);
+        });
+
+        /* Mini-Radio Playlist System */
+        const playlist = [
+            { title: '1. Молитва', file: 'another/track1.mp3' },
+            { title: '2. Твой лучший июль', file: 'another/track2.mp3' },
+            { title: '3. Потанцуем?', file: 'another/track3.mp3' },
+            { title: '4. Поспешим же', file: 'another/track4.mp3' },
+            { title: '5. Такая нежная', file: 'another/track5.mp3' },
+            { title: '6. Человек', file: 'another/track6.mp3' },
+            { title: '7. Тот самый компот', file: 'another/track7.mp3' },
+        ];
+        let currentTrackIndex = 0;
+        let isPlaying = false;
+
+        const audio = document.getElementById('bgAudio');
+        const audioSource = document.getElementById('audioSource');
+        const playBtn = document.getElementById('playBtn');
+        const trackTitle = document.getElementById('trackTitle');
+        const audioProgress = document.getElementById('audioProgress');
+        const trackTime = document.getElementById('trackTime');
+
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            audioSource.src = playlist[index].file;
+            trackTitle.innerText = playlist[index].title;
+            audio.load();
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playBtn.innerText = '▶';
+                isPlaying = false;
+            } else {
+                audio.play().then(() => {
+                    playBtn.innerText = '⏸';
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log('Audio playback notice:', err);
+                    playBtn.innerText = '▶';
+                });
+            }
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const pct = (audio.currentTime / audio.duration) * 100;
+                audioProgress.style.width = pct + '%';
+
+                const curMin = Math.floor(audio.currentTime / 60);
+                const curSec = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
+                const durMin = Math.floor(audio.duration / 60) || 0;
+                const durSec = Math.floor(audio.duration % 60).toString().padStart(2, '0');
+
+                trackTime.innerText = `${curMin}:${curSec} / ${durMin}:${durSec}`;
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            nextTrack();
+        });
+
+        function seekAudio(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            if (audio.duration) {
+                audio.currentTime = pos * audio.duration;
+            }
+        }
+
+        /* Letter Modal Popup Handler */
+        function openLetterModal() {
+            const modal = document.getElementById('letterModal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeLetterModal() {
+            const modal = document.getElementById('letterModal');
+            if (modal) modal.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
